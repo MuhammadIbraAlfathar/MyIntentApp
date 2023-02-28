@@ -7,9 +7,21 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var tvResult : TextView
+
+//    Membuat launcher registerForActivityResult
+    private val resultLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) {
+        result ->
+        if (result.resultCode == MoveForResultActivity.RESULT_CODE && result.data != null){
+            val selectedValue = result.data?.getIntExtra(MoveForResultActivity.EXTRA_SELECTED_VALUE, 0)
+            tvResult.text = "Hasil : $selectedValue"
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,11 +93,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
 //            Nilai Balik dari Intent
 
-//            R.id.btn_move_for_result -> {
-//                val resultIntent = Intent(this@MainActivity, MoveForResultActivity::class.java)
-//                startActivity(resultIntent)
-//            }
-
+            R.id.btn_move_for_result -> {
+                val resultIntent = Intent(this@MainActivity, MoveForResultActivity::class.java)
+                resultLauncher.launch(resultIntent)
+            }
         }
 
     }
