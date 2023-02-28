@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 //Implicit Intent
         val btnDialPhone : Button = findViewById(R.id.btn_dial_number)
         btnDialPhone.setOnClickListener(this)
-
+//
         val btnMoveForResult : Button = findViewById(R.id.btn_move_for_result)
         btnMoveForResult.setOnClickListener(this)
 
@@ -50,9 +50,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    override fun onClick(v: View?) {
+    override fun onClick(v: View) {
 
-        when (v?.id){
+        when (v.id){
             //        Latihan explicit intent
             R.id.btn_move_activity -> {
                 val moveIntent = Intent(this@MainActivity, MoveActivity::class.java)

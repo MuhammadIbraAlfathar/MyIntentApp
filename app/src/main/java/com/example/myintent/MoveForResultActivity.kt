@@ -27,7 +27,6 @@ class MoveForResultActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        TODO("Not yet implemented")
         if (v?.id == R.id.btn_choose){
             if (rgNumber.checkedRadioButtonId > 0){
                 var value = 0
